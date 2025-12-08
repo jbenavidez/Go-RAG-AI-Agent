@@ -6,6 +6,8 @@ import (
 )
 
 func SimpleEmbedding(text string) []float64 {
+	// if you have an Open AI Key, you can use openAI Embedding model to make it more robust.
+	// Since this is simple RAG Ai Agent, I will keep it as simple as possible
 	text = strings.ToLower(text)
 	vector := make([]float64, 32)
 
