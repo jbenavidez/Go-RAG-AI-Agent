@@ -36,8 +36,8 @@ services:
  
   embedding-service:
     build:
-      context: ./../embedding-service     # <-- folder containing app.py + Dockerfile
-      dockerfile:  ./../embedding-service/embedding-service.dockerfile           # <-- name of the Dockerfile you created
+      context: ./../embedding-service 
+      dockerfile:  ./../embedding-service/embedding-service.dockerfile
     restart: always
     deploy:
       mode: replicated
@@ -45,6 +45,6 @@ services:
     ports:
       - "8000:8000"
     environment:
-      MODEL_NAME: "all-MiniLM-L6-v2"   # optional, if you want env config later
+      MODEL_NAME: "all-MiniLM-L6-v2"
     depends_on:
       - postgres
