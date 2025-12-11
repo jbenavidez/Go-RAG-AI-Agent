@@ -13,19 +13,20 @@ class EmbeddingService(embedding_pb2_grpc.EmbeddingServiceServicer):
 
     def TextToEmbedding(self, request, context):
         text = request.text
-        print("Valinor_is_calling:", text)
-
-
         vectors_gen = model.embed([text])
         vectors_list = list(vectors_gen)
         embeddings = vectors_list[0]
 
         # Convert to list for RPC-safe format
-        embedding_list = embeddings.tolist() if hasattr(embeddings, "tolist") else embeddings
-
+        if hasattr(embeddings, "astype"):
+            embeddings = embeddings.astype("float64")
+            
+        embedding_list = embeddings.tolist()
+        # return a list of float64
         return embedding_pb2.EmbeddingsMessageResponse(
-            text=str(embedding_list)
+            result=embedding_list
         )
+
 
 
 def start_grpc_server():

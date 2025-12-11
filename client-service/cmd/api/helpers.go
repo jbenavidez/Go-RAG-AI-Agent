@@ -28,8 +28,10 @@ func (c *Config) LoadData() error {
 	fmt.Println("Total documents on DB", totalDocs)
 	// only inser tada if total_doc is equal to 0
 	if totalDocs > 0 {
+
 		return nil
 	}
+	fmt.Println("****** loading data ******")
 	f, err := os.Open("./cmd/data/data.csv")
 	if err != nil {
 		return err
@@ -96,19 +98,19 @@ func (app *Config) TestEndpoint(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	jsonResponse := make(map[string]string)
-	jsonResponse["status"] = "ok"
-	jsonResponse["message"] = resp.Text
+	jsonResponse := make(map[string][]float64)
+
+	jsonResponse["message"] = resp.Result
 	//set response
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(jsonResponse)
 
 }
 
-func (app *Config) TextToEmbedding(ctx context.Context, text string) (string, error) {
+func (app *Config) TextToEmbedding(ctx context.Context, text string) ([]float64, error) {
 	// set req for grpc service
 	if len(text) == 0 {
-		return "nil", errors.New("text cant be empty")
+		return nil, errors.New("text cant be empty")
 	}
 	fmt.Println("the_text_to_process", text)
 	req := &pb.EmbeddingsMessageRequest{
@@ -117,9 +119,9 @@ func (app *Config) TextToEmbedding(ctx context.Context, text string) (string, er
 	resp, err := app.GRPCClient.TextToEmbedding(ctx, req)
 	if err != nil {
 		fmt.Println("unable to calle GRP", err)
-		return "nil", err
+		return nil, err
 	}
 
-	return resp.Text, nil
+	return resp.Result, nil
 
 }

@@ -40,13 +40,6 @@ func main() {
 	if err != nil {
 		fmt.Println("somethings break", err)
 	}
-
-	_, err = app.DB.GetEmbeddingDocument("valinor", 3)
-
-	if err != nil {
-		fmt.Println("failed_test", err)
-		panic(err)
-	}
 	log.Println("Starting agent on port", port)
 	err = http.ListenAndServe(fmt.Sprintf(":%d", port), app.routes())
 	if err != nil {

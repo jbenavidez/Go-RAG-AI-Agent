@@ -11,7 +11,7 @@ message EmbeddingsMessageRequest{
 }
 
 message EmbeddingsMessageResponse{
-    string text = 2;
+    repeated double result = 1;
 
 }
 
