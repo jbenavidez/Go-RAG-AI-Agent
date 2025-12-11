@@ -15,4 +15,4 @@ A lightweight RAG-based AI agent that ingests content from the NYC Capital proje
    performance needs.
 
  ## Data source
-The agent’s knowledge comes from  data.cityofnewyork.us, with data currently imported via a CSV file. This ingestion method is fully flexible—CSV loading can easily be replaced with direct API-based retrieval, since data.cityofnewyork.us provides both CSV exports and a public API for accessing article content.
+The agent’s knowledge comes from  data.cityofnewyork.us, with data currently imported via a CSV file. This ingestion method is fully flexible—CSV loading can easily be replaced with direct API-based retrieval, since data.cityofnewyork.us provides both CSV exports and a public API for accessing capital projects content.
