@@ -86,10 +86,9 @@ func (c *Config) LoadData() error {
 
 func (app *Config) TestEndpoint(w http.ResponseWriter, r *http.Request) {
 
-	//test GRPC connection
 	//set request
 	req := &pb.EmbeddingsMessageRequest{
-		Text: "hello there",
+		Text: "REENWICH STREET RECONSTRUCTION",
 	}
 	resp, err := app.GRPCClient.TextToEmbedding(r.Context(), req)
 

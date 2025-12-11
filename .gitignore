@@ -1,8 +1,8 @@
 postgres-data/
 .DS_Store
-
+/project/db-data/
 project/db-data/*
-
+/embedding-service/__pycache__/
 # compiled output
 /dist
 /tmp
