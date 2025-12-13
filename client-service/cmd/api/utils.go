@@ -13,8 +13,9 @@ func (c *Config) LoadDataSet() error {
 	if err != nil {
 		return err
 	}
+	fmt.Println("******** total docs ********", totalDocs)
 	if totalDocs > 0 {
-		fmt.Printf("the total docs %v", totalDocs)
+		fmt.Printf(" the total docs %v", totalDocs)
 		return nil
 	}
 	fmt.Println("******** Getting  data from csv ********")
@@ -28,7 +29,7 @@ func (c *Config) LoadDataSet() error {
 	if err != nil {
 		return err
 	}
-	fmt.Println("******** Data load completed ********")
+	// fmt.Println("******** Data load completed ********")
 	return nil
 
 }
@@ -51,15 +52,29 @@ func (c *Config) GetData() ([]*models.Doc, error) {
 	var docs []*models.Doc
 	// skip ehader
 	for _, row := range rows[1:] {
-		projectcName := row[2]
-		description := row[3]
-		text := strings.TrimSpace(fmt.Sprintf("%s — %s", projectcName, description))
+		// Combine key fields for semantic search
+		text := strings.TrimSpace(fmt.Sprintf("%s — %s", row[2], row[3])) // ProjectName — Description
+
 		d := models.Doc{
-			ID:          row[1],
-			Text:        text,
-			ProjectName: projectcName,
-			Description: description,
+			ID:                    row[1],
+			DateReported:          row[0],
+			ProjectName:           row[2],
+			Description:           row[3],
+			Category:              row[4],
+			Borough:               row[5],
+			ManagingAgency:        row[6],
+			ClientAgency:          row[7],
+			CurrentPhase:          row[8],
+			DesignStart:           row[9],
+			BudgetForecast:        row[10],
+			LatestBudgetChanges:   row[11],
+			TotalBudgetChanges:    row[12],
+			ForecastCompletion:    row[13],
+			LatestScheduleChanges: row[14],
+			TotalScheduleChanges:  row[15],
+			Text:                  text,
 		}
+
 		docs = append(docs, &d)
 	}
 
