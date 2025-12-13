@@ -1,10 +1,10 @@
 package main
 
 import (
-	"client/models"
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"ragService/models"
 )
 
 func (c *Config) TestEndpoint(w http.ResponseWriter, r *http.Request) {

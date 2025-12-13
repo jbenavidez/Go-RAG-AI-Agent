@@ -1,9 +1,9 @@
 package dbrepo
 
 import (
-	"client/models"
 	"context"
 	"fmt"
+	"ragService/models"
 	"time"
 
 	"github.com/weaviate/weaviate-go-client/v5/weaviate"

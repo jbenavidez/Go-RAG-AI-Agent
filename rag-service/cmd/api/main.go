@@ -1,11 +1,11 @@
 package main
 
 import (
-	"client/repository"
-	dbrepo "client/repository/db_repo"
 	"fmt"
 	"log"
 	"net/http"
+	"ragService/repository"
+	dbrepo "ragService/repository/db_repo"
 
 	"github.com/tmc/langchaingo/llms"
 	"github.com/tmc/langchaingo/llms/ollama"

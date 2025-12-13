@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"client/models"
+	"ragService/models"
 
 	"github.com/weaviate/weaviate-go-client/v5/weaviate"
 )

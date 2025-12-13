@@ -1,4 +1,4 @@
-module client
+module ragService
 
 go 1.24.10
 

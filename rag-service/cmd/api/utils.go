@@ -1,10 +1,10 @@
 package main
 
 import (
-	"client/models"
 	"encoding/csv"
 	"fmt"
 	"os"
+	"ragService/models"
 	"strings"
 )
 
