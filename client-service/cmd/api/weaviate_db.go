@@ -15,7 +15,7 @@ func (app *Config) ConnectWeaviateDB() (*weaviate.Client, error) {
 	ctx := context.Background()
 	client := weaviate.New(weaviate.Config{
 		Scheme: "http",
-		Host:   "weaviate:8080", // service name, no container_name
+		Host:   "weaviate:8080",
 	})
 
 	// Wait until Weaviate is ready
@@ -23,7 +23,8 @@ func (app *Config) ConnectWeaviateDB() (*weaviate.Client, error) {
 	for i := 0; i < maxRetries; i++ {
 		_, err := client.Schema().Getter().Do(ctx)
 		if err == nil {
-			break // Weaviate is ready
+			//break since Weaviate is ready
+			break
 		}
 		fmt.Println("Waiting for Weaviate to be ready...")
 		time.Sleep(2 * time.Second)
@@ -34,8 +35,7 @@ func (app *Config) ConnectWeaviateDB() (*weaviate.Client, error) {
 	if err != nil {
 		return nil, fmt.Errorf("Weaviate not ready after retries: %w", err)
 	}
-	fmt.Println("Weaviate connected and Document class created")
-	fmt.Println("Checking is class for documents exist")
+
 	// check is class exist
 	className := "Document"
 	exists, err := client.Schema().ClassExistenceChecker().
@@ -58,7 +58,7 @@ func (app *Config) ConnectWeaviateDB() (*weaviate.Client, error) {
 		}
 
 		if err := client.Schema().ClassCreator().WithClass(documentClass).Do(ctx); err != nil {
-			return nil, fmt.Errorf("failed to create Document class: %w", err)
+			return nil, err
 		}
 		fmt.Println("class for documents created")
 	}

@@ -1,18 +1,24 @@
+# Weaviate and Postgres data
+project/weaviate_data/
 postgres-data/
-.DS_Store
-/project/db-data/
+project/db-data/
 project/db-data/*
-/embedding-service/__pycache__/
+
+# macOS system files
+.DS_Store
+
 # compiled output
 /dist
 /tmp
 /out-tsc
-# Only exists if Bazel was run
+
+# Bazel output
 /bazel-out
 
-# dependencies
+# Node dependencies
 /node_modules
 node_modules/
+
 # profiling files
 chrome-profiler-events*.json
 speed-measure-plugin*.json
@@ -44,6 +50,5 @@ yarn-error.log
 testem.log
 /typings
 
-# System Files
-.DS_Store
+# Windows system files
 Thumbs.db

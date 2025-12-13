@@ -1,1 +1,0 @@
-execute("DROP EXTENSION IF EXISTS vector;")

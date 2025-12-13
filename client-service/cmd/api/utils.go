@@ -29,7 +29,7 @@ func (c *Config) LoadDataSet() error {
 	if err != nil {
 		return err
 	}
-	// fmt.Println("******** Data load completed ********")
+	fmt.Println("******** Data load completed ********")
 	return nil
 
 }
@@ -52,7 +52,7 @@ func (c *Config) GetData() ([]*models.Doc, error) {
 	var docs []*models.Doc
 	// skip ehader
 	for _, row := range rows[1:] {
-		// Combine key fields for semantic search
+		// Combine key fields for  search
 		text := strings.TrimSpace(fmt.Sprintf("%s — %s", row[2], row[3])) // ProjectName — Description
 
 		d := models.Doc{

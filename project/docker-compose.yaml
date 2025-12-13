@@ -15,42 +15,7 @@ services:
     environment:
       DSN: "host=postgres port=5432 user=postgres password=postgres dbname=ai_agent sslmode=disable timezone=UTC connect_timeout=5"
     depends_on:
-      - embedding-service
       - weaviate
-
-  embedding-service:
-    build:
-      context: ./../embedding-service
-      dockerfile: ./../embedding-service/embedding-service.dockerfile
-    restart: always
-    deploy:
-      mode: replicated
-      replicas: 1
-    ports:
-      - "50001:50001"
-    environment:
-      MODEL_NAME: "all-MiniLM-L6-v2"
-    depends_on:
-      - postgres
-    volumes:
-      - "../embedding-service:/app"
-
-  postgres:
-    image: ramsrib/pgvector:14
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: ai_agent
-    logging:
-      options:
-        max-size: 10m
-        max-file: "3"
-    ports:
-      - '5432:5432'
-    volumes:
-      - ./db-data/postgres/:/var/lib/postgresql/data/
-      - ./db-init:/docker-entrypoint-initdb.d/
 
   ollama-service:
     image: ollama/ollama:latest
@@ -61,8 +26,6 @@ services:
       OLLAMA_API_KEY: ""
     volumes:
       - ./ollama-data:/ollama-data
-    depends_on:
-      - postgres
 
 
 
@@ -81,10 +44,8 @@ services:
       DEFAULT_VECTORIZER_MODULE: "text2vec-openai"
       ENABLE_MODULES: "text2vec-openai"
       OPENAI_EMBEDDING_MODEL: "text-embedding-3-small"
-
+      OPENAI_APIKEY: "{OPENAI_APIKEY}"
       UUID_ALLOW_NON_UUID: "true"
-
-   
       CLUSTER_HOSTNAME: "weaviate"
       CLUSTER_JOIN: ""
  

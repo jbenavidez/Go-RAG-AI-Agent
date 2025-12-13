@@ -1,7 +1,6 @@
 package main
 
 import (
-	pb "client/proto/generated"
 	"client/repository"
 	dbrepo "client/repository/db_repo"
 	"fmt"
@@ -14,16 +13,13 @@ import (
 )
 
 const (
-	gRpcPort = "50001"
-	port     = 4000
+	port = 4000
 )
 
 type Config struct {
-	DB             repository.DatabaseRepo
-	GRPCClient     pb.EmbeddingServiceClient
 	Llm            llms.Model
 	WeaviateClient *weaviate.Client
-	WDBRepo        repository.WeaviateDatabaseRepo
+	WDBRepo        repository.DatabaseRepo
 }
 
 func main() {
