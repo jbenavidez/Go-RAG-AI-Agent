@@ -38,7 +38,7 @@ Start all services using Docker Compose:
 docker-compose up
 ```
 
-### 2. Access the ClI(wip)
+### 2. Access the CLI(wip)
 
 SSH into the CLI container::
 
