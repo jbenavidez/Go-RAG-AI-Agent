@@ -39,7 +39,10 @@ func main() {
 	}
 	fmt.Println("*************  Init Ollama *************")
 	// Initialize Ollama LLMs
-	llm, err := ollama.New(ollama.WithModel("llama2"))
+	llm, err := ollama.New(
+		ollama.WithModel("llama2"),
+		ollama.WithServerURL("http://ollama-service:11434"),
+	)
 	if err != nil {
 		fmt.Println("failed to Initialize Ollama: ", err)
 		panic(err)

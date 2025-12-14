@@ -1,11 +1,16 @@
 package main
 
 import (
+	"context"
 	"encoding/csv"
+	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"ragService/models"
 	"strings"
+
+	"github.com/tmc/langchaingo/llms"
 )
 
 func (c *Config) LoadDataSet() error {
@@ -88,27 +93,10 @@ func (c *Config) DocsToContext(docs []*models.Doc) string {
 	}
 	// Build context from relevant chunks
 	context := "Context from documents:\n"
-	for i, doc := range docs {
+	for _, doc := range docs {
 		context += fmt.Sprintf(`
-					%d
-					Reported Date  "%s"
-					Project Name: "%s"
-					Description: "%s"
-					Borough : "%s"
-					Managing Agency : "%s"
-					Client Agency : "%s"
-					Current Phase : "%s"
-					Design Start : "%s"
-					Budget Forecast : "%s"
-					Latest Budget Changes : "%s"
-					Total Budget Changes : "%s"
-					Forecast Completion : "%s"
-					Latest Schedule Changes : "%s"
-					Total Schedule Changes : "%s"
-					%s
-					\n\n
+					Reported Date %s\n\n Project Name: %s\n\n Description: %s\n\n Borough : %s\n\n Managing Agency : %s\n\n Client Agency : %s\n\n Current Phase : %s\n\n Design Start : %s\n\n Budget Forecast : %s\n\n Latest Budget Changes : %s\n\n Total Budget Changes : %s\n\n Forecast Completion : %s\n\nLatest Schedule Changes : %s\n\nTotal Schedule Changes : %s\n\n
 					`,
-			i+1,
 			doc.DateReported,
 			doc.ProjectName,
 			doc.Description,
@@ -126,4 +114,35 @@ func (c *Config) DocsToContext(docs []*models.Doc) string {
 		)
 	}
 	return context
+}
+
+func (c *Config) GenerateAnswerFromSlides(ctx context.Context, question string, slides []*models.Doc) (string, error) {
+	// marshal docks
+	slidesJSON, err := json.Marshal(slides)
+	if err != nil {
+		return "", err
+	}
+
+	// pront required to geneare a answer
+	prompt := fmt.Sprintf(
+		"Use only the following slide data to answer the question. "+
+			"Give a concise, professional answer. "+
+			"Number items if there are multiple.\n\n"+
+			"Slides JSON:\n%s\n\nQuestion: %s\nAnswer:",
+		slidesJSON, question,
+	)
+
+	// let llm generate response
+	response, err := c.Llm.GenerateContent(ctx, []llms.MessageContent{
+		llms.TextParts(llms.ChatMessageTypeHuman, prompt),
+	})
+	if err != nil {
+		return "", err
+	}
+
+	// return error is now response
+	if len(response.Choices) == 0 {
+		return "", errors.New("no response from LLM")
+	}
+	return strings.TrimSpace(response.Choices[0].Content), nil
 }

@@ -123,7 +123,7 @@ func (m *WeaviateDBRepo) GetDocuments(q string) ([]*models.Doc, error) {
       Get {
         Document(
           nearText: { concepts: ["%s"] }
-          limit: 5
+          limit: 3
         ) {
           text
           dateReported
