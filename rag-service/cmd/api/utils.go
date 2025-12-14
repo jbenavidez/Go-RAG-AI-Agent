@@ -13,7 +13,7 @@ import (
 	"github.com/tmc/langchaingo/llms"
 )
 
-func (c *Config) LoadDataSet() error {
+func (c *RagConfig) LoadDataSet() error {
 	totalDocs, err := c.WDBRepo.GetTotalDocs()
 	if err != nil {
 		return err
@@ -39,7 +39,7 @@ func (c *Config) LoadDataSet() error {
 
 }
 
-func (c *Config) GetData() ([]*models.Doc, error) {
+func (c *RagConfig) GetData() ([]*models.Doc, error) {
 	f, err := os.Open("./cmd/data/data.csv")
 	if err != nil {
 		return nil, err
@@ -86,7 +86,7 @@ func (c *Config) GetData() ([]*models.Doc, error) {
 	return docs, nil
 }
 
-func (c *Config) DocsToContext(docs []*models.Doc) string {
+func (c *RagConfig) DocsToContext(docs []*models.Doc) string {
 	//return tempty string is there are not docs
 	if len(docs) == 0 {
 		return ""
@@ -116,7 +116,7 @@ func (c *Config) DocsToContext(docs []*models.Doc) string {
 	return context
 }
 
-func (c *Config) GenerateAnswerFromSlides(ctx context.Context, question string, slides []*models.Doc) (string, error) {
+func (c *RagConfig) GenerateAnswerFromSlides(ctx context.Context, question string, slides []*models.Doc) (string, error) {
 	// marshal docks
 	slidesJSON, err := json.Marshal(slides)
 	if err != nil {

@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func (c *Config) TestEndpoint(w http.ResponseWriter, r *http.Request) {
+func (c *RagConfig) TestEndpoint(w http.ResponseWriter, r *http.Request) {
 
 	// test query
 	searchQuery := "List the project names along with their budget forecast and total budget changes for each interceptor sewer project."

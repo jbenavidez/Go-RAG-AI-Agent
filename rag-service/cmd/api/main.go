@@ -16,14 +16,14 @@ const (
 	port = 4000
 )
 
-type Config struct {
+type RagConfig struct {
 	Llm            llms.Model
 	WeaviateClient *weaviate.Client
 	WDBRepo        repository.DatabaseRepo
 }
 
 func main() {
-	app := Config{}
+	app := RagConfig{}
 	fmt.Println("************* connecting to Weaviate *************")
 	client, err := app.ConnectWeaviateDB()
 	if err != nil {

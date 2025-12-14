@@ -11,7 +11,7 @@ import (
 	"github.com/weaviate/weaviate/entities/schema"
 )
 
-func (app *Config) ConnectWeaviateDB() (*weaviate.Client, error) {
+func (app *RagConfig) ConnectWeaviateDB() (*weaviate.Client, error) {
 	ctx := context.Background()
 	client := weaviate.New(weaviate.Config{
 		Scheme: "http",
