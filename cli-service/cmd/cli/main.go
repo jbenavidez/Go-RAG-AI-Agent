@@ -2,13 +2,31 @@ package main
 
 import (
 	"bufio"
+	pb "clipService/proto/generated"
 	"fmt"
 	"os"
 	"strings"
+
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
-func main() {
+type Application struct {
+	GRPCClient pb.AIAgentServiceClient
+}
 
+func main() {
+	//set grpc client
+	var app Application
+	//set grp client
+	conn, err := grpc.Dial("rag-service:50001", grpc.WithTransportCredentials(insecure.NewCredentials()), grpc.WithBlock())
+	if err != nil {
+		fmt.Println("unable to connected to grpc server")
+		panic(err)
+	}
+	client := pb.NewAIAgentServiceClient(conn)
+	app.GRPCClient = client
+	//init cli
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Println("Welcome to the NYC Capital Project RAG AI CLI")
 	fmt.Println("Ask any question related to nyc capitals projects from 2023-2025.")
@@ -22,8 +40,6 @@ func main() {
 		if question == "exit" {
 			break
 		}
-
-		//answer, err := cliService.Ask(context.Background(), question)
 
 		fmt.Println("\nAnswer:")
 
