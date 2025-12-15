@@ -8,15 +8,14 @@ A lightweight **Retrieval-Augmented Generation (RAG)** AI agent that ingests dat
 - **gRPC** — High-performance communication between microservices
 - **Ollama** — Local LLM runtime for serving LLaMA 2
 - **LLaMA 2** — Large Language Model for context-aware response generation
-- **OpenAI Embeddings** — Used for text vectorization via `text2vec-openai`
-- **Docker & Docker Compose** — Containerization and service orchestration
+
 
  ## Features
 - **Retrieval-Augmented Generation (RAG)** for accurate, data-grounded responses  
 - **Semantic search** powered by vector embeddings  
 - **Context-aware responses** generated using **LLaMA 2**  
 - **Microservices-based architecture** for modularity and scalability  
-- **Web application** for testing and interacting with the AI agent
+- **Web-App** for testing and interacting with the AI agent
 
  ## Microservices Details
 The system is built using a **microservices architecture**:
@@ -45,5 +44,5 @@ make up_build
 
 
 ```bash
-http://localhost:4000\
+http://localhost:4000
 ```
