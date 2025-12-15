@@ -16,7 +16,6 @@ A lightweight RAG-based AI agent that ingests data from the NYC Capital Projects
 - **Context-aware responses** generated using **LLaMA 2**
 - **Microservices-based architecture** for modularity and scalability
 - **CLI tool** for testing and interacting with the AI agent
-- **API-first design**, enabling integration beyond the CLI
 
  ## Micro-Services descriptions
 *   **RAG-service**: A service built in Go responsible for handling Retrieval-Augmented Generation (RAG) operations. It manages incoming requests, communicates with the embedding service, and performs queries to the vector database. The service relies on Weaviate to retrieve relevant embeddings for generating context-aware responses.
