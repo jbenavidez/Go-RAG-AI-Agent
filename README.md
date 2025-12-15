@@ -1,5 +1,6 @@
 # RAG-AI-Agent(WIP)
-A lightweight RAG-based AI agent that ingests data from the NYC Capital Projects dataset and answers user questions with relevant, context-aware responses grounded in the ingested data. The AI agent is designed to operate independently and can be integrated into other applications or services. A command-line interface (CLI) is provided as a testing and interaction tool, allowing users to easily query and validate the agent’s capabilities.
+A lightweight **Retrieval-Augmented Generation (RAG)** AI agent that ingests data from the **NYC Capital Projects dataset** and answers user questions with relevant, context-aware responses grounded in the ingested data. The agent is designed to operate independently and can be integrated into other applications or services. A **web-based application** is provided for testing and interaction, allowing users to query the agent through an intuitive browser interface and validate its capabilities.
+
 
  ## Stack
 - **Go** — Core language for building the **RAG AI agent**
@@ -20,7 +21,7 @@ A lightweight RAG-based AI agent that ingests data from the NYC Capital Projects
  ## Microservices Detais
 The system is built using a **microservices architecture**:
 
-- **RAG-service (Go)** — Handles queries, coordinates embedding retrieval, and orchestrates the AI agent  
+- **RAG-IA_agentservice (Go)** — Handles queries, coordinates embedding retrieval, and orchestrates the AI agent  
 - **Weaviate Database** — Stores and retrieves vector embeddings for semantic search  
 - **Ollama (LLaMA 2)** — Generates natural language responses based on context  
 - **CLI-service** — Command-line interface for testing and interacting with the AI agent
