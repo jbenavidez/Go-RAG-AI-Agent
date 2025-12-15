@@ -2,8 +2,8 @@
 A lightweight RAG-based AI agent that ingests data from the NYC Capital Projects dataset and answers user questions with relevant, context-aware responses grounded in the ingested data. The AI agent is designed to operate independently and can be integrated into other applications or services. A command-line interface (CLI) is provided as a testing and interaction tool, allowing users to easily query and validate the agent’s capabilities.
 
  ## Stack
-- **Go** — Core language for building the RAG-service
-- **Weaviate** — Vector database for storing and retrieving embeddings
+- **Go** — Core language for building the **RAG AI agent**
+- **Weaviate** — Vector database used by the **RAG AI agent** for storing and retrieving embeddings
 - **gRPC** — High-performance communication between microservices
 - **Ollama** — Local LLM runtime for serving LLaMA 2
 - **LLaMA 2** — Large Language Model for context-aware response generation
