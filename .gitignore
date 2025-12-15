@@ -3,7 +3,7 @@ project/weaviate_data/
 postgres-data/
 project/db-data/
 project/db-data/*
-
+project/ollama-data/*
 # macOS system files
 .DS_Store
 

@@ -1,7 +1,7 @@
 RAG_SERVICE=RagAgent
-CLI_SERVICE=CliService
+FRONT_END=frontEndApp
 
-up_build:  build_rag_agent build_cli
+up_build:  build_rag_agent build_frontend
 	@echo "Stopping docker images (if running...)"
 	docker-compose down
 	@echo "Starting Docker images..."
@@ -15,7 +15,7 @@ build_rag_agent:
 	@echo "Done!"
 
 
-build_cli:
-	@echo "Building clip service  binary..."
-	cd ../cli-service && env GOOS=linux CGO_ENABLED=0 go build -o ${CLI_SERVICE} ./cmd/cli
+build_frontend:
+	@echo "Building front end  binary..."
+	cd ../front-end && env GOOS=linux CGO_ENABLED=0 go build -o ${FRONT_END} ./cmd/web
 	@echo "Done!"
