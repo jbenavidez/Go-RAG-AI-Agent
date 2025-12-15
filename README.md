@@ -5,9 +5,9 @@ A lightweight **Retrieval-Augmented Generation (RAG)** AI agent that ingests dat
  ## Stack
 - **Go** — Core language for building the **RAG AI agent**
 - **Weaviate** — Vector database used by the **RAG AI agent** for storing and retrieving embeddings
-- **gRPC** — High-performance communication between microservices
+- **GRPC** — High-performance communication between microservices
 - **Ollama** — Local LLM runtime for serving LLaMA 2
-- **LLaMA 2** — Large Language Model for context-aware response generation
+- **Llama 2** — Large Language Model for context-aware response generation
 
 
  ## Features
