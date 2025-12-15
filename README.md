@@ -25,7 +25,7 @@ The system is built using a **microservices architecture**:
 - **RAG-IA-agent-service (Go)** — Handles queries, coordinates embedding retrieval, and orchestrates the AI agent  
 - **Weaviate Database** — Stores and retrieves vector embeddings for semantic search  
 - **Ollama (LLaMA 2)** — Generates natural language responses based on context  
-- **Wb Application-service** — Browser-based interface for testing and interacting with the AI agent
+- **Wb Application-service** — Small Web-App for testing and interacting with the AI agent
 
  ## Data source
 The agent’s knowledge comes from   **data.cityofnewyork.us**, with data currently imported via a CSV file. This ingestion method is fully flexible—CSV loading can easily be replaced with direct API-based retrieval, since  **data.cityofnewyork.us** provides both CSV exports and a public API for accessing the capital projects information.
