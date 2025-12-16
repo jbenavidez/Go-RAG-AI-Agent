@@ -71,7 +71,7 @@ func (m *Repository) AnswerUserQuestion(w http.ResponseWriter, r *http.Request) 
 	//set response
 	resp := models.JSONResponse{
 		Error:   false,
-		Message: "answer for qeustion",
+		Message: "success",
 		Data:    agentAnwer,
 	}
 	// send resposne
