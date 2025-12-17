@@ -19,8 +19,9 @@ const port = ":4000"
 var app config.AppConfig
 
 func main() {
+	// set go rutine to listen ws chan
+	go handlers.ListenToWsChannel()
 	//set grpc client
-
 	conn, err := grpc.Dial("rag-ai-agent-service:50001", grpc.WithTransportCredentials(insecure.NewCredentials()), grpc.WithBlock())
 	if err != nil {
 		fmt.Println("unable to connected to grpc server")

@@ -10,7 +10,7 @@ import (
 	"net/http"
 )
 
-var wsChan = make(chan WsPayload)
+var wsChan = make(chan WsMessage)
 
 type Repository struct {
 	App *config.AppConfig
@@ -88,7 +88,6 @@ func (m *Repository) WsChatRoom(w http.ResponseWriter, r *http.Request) {
 		log.Println("unable to start ws", err)
 		return
 	}
-	_ = ws
 	//set ws res
 	var response WsJsonResponse
 	response.Message = `<em><small> connected to served</small></em>`
