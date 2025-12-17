@@ -6,8 +6,11 @@ import (
 	"frontend/internal/models"
 	"frontend/internal/render"
 	pb "frontend/proto/generated"
+	"log"
 	"net/http"
 )
+
+var wsChan = make(chan WsPayload)
 
 type Repository struct {
 	App *config.AppConfig
@@ -78,6 +81,25 @@ func (m *Repository) AnswerUserQuestion(w http.ResponseWriter, r *http.Request) 
 
 }
 
+// WsChatRoom will replace the API endpoint
 func (m *Repository) WsChatRoom(w http.ResponseWriter, r *http.Request) {
+	ws, err := upgradeConnection.Upgrade(w, r, nil)
+	if err != nil {
+		log.Println("unable to start ws", err)
+		return
+	}
+	_ = ws
+	//set ws res
+	var response WsJsonResponse
+	response.Message = `<em><small> connected to served</small></em>`
+	conn := WebSocketConnection{Conn: ws}
 
+	err = ws.WriteJSON(response)
+	if err != nil {
+		log.Println(err)
+	}
+	//
+	log.Println("cconnected success ")
+
+	go ListenForWs(&conn) // start go runtine to listen Ws
 }

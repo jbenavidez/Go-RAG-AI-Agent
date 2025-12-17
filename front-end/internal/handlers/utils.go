@@ -9,6 +9,16 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+type WsJsonResponse struct {
+	Action        string   `json:"action"`
+	Message       string   `json:"message"`
+	ConnectedUser []string `json:"connected_users"`
+}
+
+type WebSocketConnection struct {
+	*websocket.Conn
+}
+
 var upgradeConnection = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,

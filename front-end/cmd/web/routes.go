@@ -13,10 +13,10 @@ func routes(app *config.AppConfig) http.Handler {
 	mux := chi.NewRouter()
 	// display chat-room
 	mux.Get("/", handlers.Repo.ChatRoom)
-	//TODO: make it ws after integrations
+	//TODO: Remove after the ws is completed
 	mux.Post("/answer-user-question", handlers.Repo.AnswerUserQuestion)
 	// init ws
-	mux.Post("/ws/answer-user-question", handlers.Repo.AnswerUserQuestion)
+	mux.Get("/ws-answer-user-question", handlers.Repo.WsChatRoom)
 
 	fileServer := http.FileServer(http.Dir("./static/"))
 	mux.Handle("/static/*", http.StripPrefix("/static", fileServer))
